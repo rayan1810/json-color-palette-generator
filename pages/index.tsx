@@ -39,7 +39,8 @@ const Home: NextPage = () => {
   const [l, setL] = useState(0);
   useEffect(() => {
     getShades(color, amount);
-  }, [color, pug, amount]);
+    // eslint-disable-next-line react/jsx-key
+  }, [color, pug, amount, getShades]);
   return (
     <ScrollView>
       <VStack alignItems="center" space="16">
@@ -83,7 +84,7 @@ const Home: NextPage = () => {
         />
         <HStack space="0">
           {shades.map((color, ind) => (
-            <Center size="16" bg={color}>
+            <Center key={`${ind}-color-shade`} size="16" bg={color}>
               {ind === 0 ? 50 : ind * 100}
             </Center>
           ))}

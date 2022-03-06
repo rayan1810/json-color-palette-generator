@@ -40,7 +40,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     getShades(color, amount);
     // eslint-disable-next-line react/jsx-key
-  }, [color, pug, amount, getShades]);
+  }, [color, pug, amount]);
   return (
     <ScrollView>
       <VStack alignItems="center" space="16">

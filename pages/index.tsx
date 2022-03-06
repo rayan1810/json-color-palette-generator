@@ -119,6 +119,34 @@ const Home: NextPage = () => {
     <NativeBaseProvider isSSR theme={theme}>
       <Head>
         <title>JSON Color Palette Generator</title>
+        <meta name="keywords" content="JSON Color Palette Generator" />
+        {/* og meta links */}
+        <meta property="og:title" content="JSON Color Palette Generator" />
+        <meta
+          property="og:description"
+          content="Generate a color palette from a hex color, also set the amount of shades"
+        />
+        <meta
+          property="og:url"
+          content="https://json-color-palette-generator.vercel.app/"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:site_name" content="JSON Color Palette Generator" />
+        <meta
+          name="twitter:image:alt"
+          content="Generate a color palette from a hex color, also set the amount of shades"
+        />
+        <meta property="og:image" content="/OGImage.png" />
+        <meta
+          name="twitter:image"
+          content="https://json-color-palette-generator.vercel.app/OGImage.png"
+        ></meta>
+        <meta name="twitter:site" content="@rohitistweet" />
+
+        <meta
+          name="description"
+          content="Generate a color palette from a hex color, also set the amount of shades"
+        />
       </Head>
       <ScrollView
         _contentContainerStyle={{

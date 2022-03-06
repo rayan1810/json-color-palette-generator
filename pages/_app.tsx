@@ -4,11 +4,7 @@ import "../styles/globals.css";
 import { NativeBaseProvider } from "native-base";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <NativeBaseProvider>
-      <Component {...pageProps} />
-    </NativeBaseProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

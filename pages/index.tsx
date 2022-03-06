@@ -15,8 +15,11 @@ import {
   FormControl,
   Center,
   VStack,
+  NativeBaseProvider,
+  extendTheme,
+  Stack,
 } from "native-base";
-import { useState, useEffect, Children } from "react";
+import { useState, useEffect } from "react";
 const ColorInput = (props: any) => {
   return (
     <Box
@@ -49,7 +52,8 @@ const SectionBox = ({ name, children }: any) => {
       p="8"
       my="8"
       rounded="6"
-      minW="1080px"
+      maxW="1080px"
+      w={{ base: "90%", md: "100%" }}
       alignItems="center"
       // bg="coolGray.50"
       borderColor="coolGray.300"
@@ -102,24 +106,39 @@ const Home: NextPage = () => {
     getShades(color, amount);
     // eslint-disable-next-line react/jsx-key
   }, [color, pug, amount]);
+
+  const theme = extendTheme({
+    colors: {
+      primary: {
+        ...arrayToObject(colorShades(color, 10, pug)),
+      },
+    },
+  });
+
   return (
-    <>
+    <NativeBaseProvider isSSR theme={theme}>
       <Head>
         <title>JSON Color Palette Generator</title>
       </Head>
       <ScrollView
         _contentContainerStyle={{
-          minW: "1080px",
+          maxW: "1080px",
+          w: "100%",
           // bg: "red.200",
           alignSelf: "center",
         }}
       >
-        <VStack alignItems="center" space="6">
-          <Heading size="2xl" my="8">
+        <VStack alignItems="center" space={{ base: "2", md: "6" }}>
+          <Heading fontSize={{ base: "xl", md: "5xl" }} my="8">
             JSON Color Palette Generator
           </Heading>
           <SectionBox name="Settings">
-            <HStack alignSelf="center" justifyContent={"center"} space={8}>
+            <Stack
+              direction={{ base: "column", md: "row" }}
+              alignSelf="center"
+              justifyContent={"center"}
+              space={8}
+            >
               <Box>
                 <FormControl>
                   <FormControl.Label isRequired>Color Name</FormControl.Label>
@@ -146,7 +165,7 @@ const Home: NextPage = () => {
                   value={pug}
                   minValue={0}
                   maxValue={100}
-                  colorScheme="cyan"
+                  colorScheme="primary"
                   onChange={(v) => {
                     setPug(v);
                   }}
@@ -164,13 +183,13 @@ const Home: NextPage = () => {
                   onChange={(e: any) => setColor(e.target.value)}
                 />
               </HStack>
-            </HStack>
+            </Stack>
           </SectionBox>
           <SectionBox name="Preview">
             <Heading mb="4" size="sm">
               {name}
             </Heading>
-            <HStack maxW="1080px" overflowX="scroll">
+            <HStack maxW="100%" overflowX="scroll">
               {shades.map((color, ind) => (
                 <Center key={`${ind}-color-shade`} size="16" bg={color}>
                   {ind === 0 ? 50 : ind * 100}
@@ -180,13 +199,13 @@ const Home: NextPage = () => {
           </SectionBox>
           <SectionBox name="Actions">
             <HStack space="4" alignItems="center">
-              <Button onPress={copyToClipboard}>Copy to Clipboard</Button>
+              <Button onPress={copyToClipboard}>Copy Color Palette JSON</Button>
               <Button onPress={copyApiToClipboard}>Get API URL</Button>
             </HStack>
           </SectionBox>
         </VStack>
       </ScrollView>
-    </>
+    </NativeBaseProvider>
   );
 };
 

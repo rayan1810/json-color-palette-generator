@@ -18,6 +18,7 @@ import {
   NativeBaseProvider,
   extendTheme,
   Stack,
+  Link,
 } from "native-base";
 import { useState, useEffect } from "react";
 const ColorInput = (props: any) => {
@@ -233,6 +234,20 @@ const Home: NextPage = () => {
           </SectionBox>
         </VStack>
       </ScrollView>
+      <Center py="4">
+        <HStack>
+          <Link
+            isExternal
+            isUnderlined={false}
+            _hover={{
+              isUnderlined: true,
+            }}
+            href="https://github.com/rayan1810/json-color-palette-generator"
+          >
+            Made with ❤️ by Rohit Singh
+          </Link>
+        </HStack>
+      </Center>
     </NativeBaseProvider>
   );
 };

@@ -13,6 +13,7 @@
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-github-btn": "^1.4.0",
     "react-native-safe-area-context": "^4.0.1",
     "react-native-svg": "^12.1.1",
     "react-native-web": "^0.17.6"

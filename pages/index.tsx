@@ -1,8 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import { colorShades, arrayToObject } from "../utils";
+import GitHubButton from "react-github-btn";
 import {
   Box,
   Button,
@@ -158,8 +157,34 @@ const Home: NextPage = () => {
         }}
       >
         <VStack alignItems="center" space={{ base: "2", md: "6" }}>
-          <Heading fontSize={{ base: "xl", md: "5xl" }} my="8">
+          <Heading
+            fontSize={{ base: "xl", md: "5xl" }}
+            my="8"
+            alignItems={"center"}
+          >
             JSON Color Palette Generator
+            <Box pl="16" display={{ base: "none", md: "inline-block" }}>
+              <GitHubButton
+                href="https://github.com/rayan1810/json-color-palette-generator"
+                data-color-scheme="light"
+                data-icon="octicon-star"
+                data-size="large"
+                aria-label="Star rayan1810/json-color-palette-generator on GitHub"
+              >
+                Star
+              </GitHubButton>
+            </Box>
+            <Box pl="16" display={{ base: "inline-block", md: "none" }}>
+              <GitHubButton
+                href="https://github.com/rayan1810/json-color-palette-generator"
+                data-color-scheme="light"
+                data-icon="octicon-star"
+                data-size="small"
+                aria-label="Star rayan1810/json-color-palette-generator on GitHub"
+              >
+                Star
+              </GitHubButton>
+            </Box>
           </Heading>
           <SectionBox name="Settings">
             <Stack

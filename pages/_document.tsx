@@ -32,6 +32,11 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <script
+          src="https://beamanalytics.b-cdn.net/beam.min.js"
+          data-token={process.env.ANALYTICS_TOKEN}
+          async
+        ></script>
       </Html>
     );
   }

@@ -18,6 +18,7 @@ import {
   extendTheme,
   Stack,
   Link,
+  Tooltip,
 } from "native-base";
 import { useState, useEffect } from "react";
 const ColorInput = (props: any) => {
@@ -75,10 +76,49 @@ const SectionBox = ({ name, children }: any) => {
   );
 };
 
+// const ModalForGithubStars = () => {
+//   return (
+//     <Box
+//       position="fixed"
+//       bottom="0"
+//       left="0"
+//       right="0"
+//       bg="white"
+//       p="4"
+//       zIndex="100"
+//     >
+//       <HStack justifyContent="space-between">
+//         <Heading size="sm">
+//           If you like this tool, please star it on GitHub
+//         </Heading>
+//         <GitHubButton
+//           href="https://github.com/rayan1810/json-color-palette-generator"
+//           data-color-scheme="light"
+//           data-icon="octicon-star"
+//           data-size="large"
+//           aria-label="Star rayan1810/json-color-palette-generator on GitHub"
+//         >
+//           Star
+//         </GitHubButton>
+//       </HStack>
+//     </Box>
+//   );
+// };
+
 const Home: NextPage = () => {
   const [color, setColor] = useState("#06b6d4");
   const [amount, setAmount] = useState(10);
   const [shades, setShades] = useState([]);
+  const [showTooltip, setShowTooltip] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setShowTooltip(true);
+      setTimeout(() => {
+        setShowTooltip(false);
+      }, 8000);
+    }, 10000);
+  }, []);
+
   const getShades = (color: string, amount: number) => {
     // const [h, s, l] = hexToHsl(color);
     setShades(colorShades(color, amount, pug));
@@ -164,15 +204,23 @@ const Home: NextPage = () => {
           >
             JSON Color Palette Generator
             <Box pl="16" display={{ base: "none", md: "inline-block" }}>
-              <GitHubButton
-                href="https://github.com/rayan1810/json-color-palette-generator"
-                data-color-scheme="light"
-                data-icon="octicon-star"
-                data-size="large"
-                aria-label="Star rayan1810/json-color-palette-generator on GitHub"
+              <Tooltip
+                isOpen={showTooltip}
+                label={"If you like this tool, please star it on GitHub ⭐️"}
+                openDelay={500}
               >
-                Star
-              </GitHubButton>
+                <Box>
+                  <GitHubButton
+                    href="https://github.com/rayan1810/json-color-palette-generator"
+                    data-color-scheme="light"
+                    data-icon="octicon-star"
+                    data-size="large"
+                    aria-label="Star rayan1810/json-color-palette-generator on GitHub"
+                  >
+                    Star
+                  </GitHubButton>
+                </Box>
+              </Tooltip>
             </Box>
             <Box pl="16" display={{ base: "inline-block", md: "none" }}>
               <GitHubButton
